@@ -26,8 +26,7 @@ void Desenha(void)
      // Desenha um círculo (elipse) preenchido com a cor corrente
      //glBegin(GL_LINE_LOOP);
      glBegin(GL_POLYGON);
-               raio_x = 50.0;
-               raio_y = 50.0;
+               raio_x = raio_y = 20.0;
                for(i = 0; i < circle_points; i++) {
                  angle = (2*PI*i)/circle_points;
                  glVertex2f(125.0+raio_x*cos(angle),125.0+raio_y*sin(angle));
