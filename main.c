@@ -71,12 +71,40 @@ void Desenha(void)
      t2+=-50;
      DesenhaCirculo(t1,t2);
      
-     //Desenha circulo 5 na cor 
+     //Desenha circulo 5 
 	glColor3f(0.0f,1.0f,1.0f);     
-     t1 +=-50;
+     t1 +=-0;
      t2+=-50;
      DesenhaCirculo(t1,t2);
-     // Executa os comandos OpenGL
+    
+      //Desenha circulo 6 
+     glColor3f(0.0f,0.5f,0.5f);     
+     t1 +=0;
+     t2+=-50;
+     DesenhaCirculo(t1,t2);
+     
+      //Desenha circulo 7 
+     glColor3f(0.5f,0.1f,1.0f);     
+     t1 +=80;
+     t2+=80;
+     DesenhaCirculo(t1,t2);
+     
+       //Desenha circulo 8 
+     glColor3f(0.5f,0.5f,0.5f);     
+     t1 +=80;
+     t2+=80;
+     DesenhaCirculo(t1,t2);
+     
+       //Desenha circulo 9 
+    glColor3f(0.5f,0.5f,0.0f);     
+     t1 +=-250;
+     t2+=-60;
+     DesenhaCirculo(t1,t2);
+     
+     
+    
+     
+    // Executa os comandos OpenGL
      glFlush();
 }
 
