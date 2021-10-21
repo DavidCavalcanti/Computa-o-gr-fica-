@@ -176,6 +176,7 @@ void Inicializa (void)
     printf("\nPrecione F ou f para tela cheia");
     printf("\nPrecione o botao direito do mouse para acessar o menu");
     printf("\nPrecione D ou d para ver os estados e suas respectivas cores");
+    printf("\nPrecione F1 para alterar cor de tela");
     printf("\n\n   ");
     
 }
@@ -200,7 +201,16 @@ void Teclado(unsigned char key, int x, int y){
 	 glutPostRedisplay();
 }
 
-
+void TeclasEspeciais(int key, int x, int y)
+{
+	if(key == GLUT_KEY_F1 ){
+		
+	 glClearColor(0.2f, 0.7f, 0.4f, 1.0f);
+	Desenha();
+	
+	}
+	glutPostRedisplay();
+}
 
 // Fun??o callback chamada quando o tamanho da janela ? alterado 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h)
@@ -414,6 +424,7 @@ int main(int argc, char ** argv) {
  glutAttachMenu(GLUT_RIGHT_BUTTON); 
  glutReshapeFunc(AlteraTamanhoJanela);
  glutKeyboardFunc(Teclado);
+ 	glutSpecialFunc(TeclasEspeciais);
  Inicializa();
  glutMainLoop();
 
