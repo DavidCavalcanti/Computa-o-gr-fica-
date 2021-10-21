@@ -10,6 +10,8 @@ GLfloat t1=0,t2=0;
 GLint moveCirculo=0;
 GLint direcao=1;
 
+GLfloat v1=0, v2=1000;
+
 GLfloat raio; // valor de 1500 para fazer os círculos aparecerem no início da chamada
 
 GLfloat AL[12] = {1478,1429,1392,1483,2444,2324,1805,1545,1330,1376,1211,1054};
@@ -74,19 +76,18 @@ void Desenha(void)
                    
      // Limpa a janela de visualiza??o com a cor de fundo especificada
      glClear(GL_COLOR_BUFFER_BIT);
-
-
-     
      
      // Especifica o tamanho do pixel
      glPointSize(1.0);
      raio = r0;
+     
 	
 	//Desenha círculo 1 na cor branca Alagoas
      glColor3f(1.0f, 1.0f, 1.0f);
      t1 = -10;
      t2 = 0;
 	 DesenhaCirculo(t1,t2);
+	 
      
      //Desenha circulo 2 na cor verde Bahia
      raio=r1;
@@ -110,14 +111,14 @@ void Desenha(void)
      t2=-70;
      DesenhaCirculo(t1,t2);
      
-     //Desenha circulo 5 Paraíba
+     //Desenha circulo 5 vermelho Paraiba
 	 raio = r4; 
-	glColor3f(0.0f,1.0f,0.0f);     
+	glColor3f(1.0f,0.0f,0.0f);     
      t1 =45;
      t2 =15;
      DesenhaCirculo(t1,t2);
     
-      //Desenha circulo 6 magenta
+      //Desenha circulo 6 azul claro  Pernamuco
       raio = r5;
      glColor3f(0.0f,0.5f,0.5f);     
      t1 = 55;
@@ -145,10 +146,17 @@ void Desenha(void)
      t2 =-45;
      DesenhaCirculo(t1,t2);
      
-     	glTranslatef(-320,320,0);
-	glScalef(0.1, 0.1, 0.1);
-    DesenhaTextoStroke(GLUT_STROKE_ROMAN,"GRAFICO DE BOLHA DE CADA ESTADO DO NORDESTE - COVID 19");    
-     
+     	glTranslatef(-350,320,0);
+	glScalef(0.1, 0.1, 1.0);
+	glColor3f(1.0,1.0,1.0);
+    DesenhaTextoStroke(GLUT_STROKE_ROMAN,"GRAFICO DE BOLHA DOS ESTADOS DO NORDESTE - MORTE POR COVID 19"); 
+	
+	glTranslatef(v1,v2,0);
+	glScalef(0.8, 0.8, 0.1);
+	glColor3f(1.0,1.0,1.0);
+    DesenhaTextoStroke(GLUT_STROKE_ROMAN,"\n AL-Branco BA-Verde CE-Amarelo MA-Azul PB-Vermelho PE-Azul-claro PI-Roxo RN- Mostarda \n SE- Cinza ");     
+    
+	    
     // Executa os comandos OpenGL
     glFlush();
       //glutSwapBuffers();
@@ -161,10 +169,15 @@ void Inicializa (void)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     
     //Exibe informações de como interagir
-    printf("Informações de como interagir com o programa:\n\n");
-    printf("Precione Esc para sair ");
-    printf("\nLOREM IPSUM DOLOR IT...");
-    printf("\nLOREM IPSUM DOLOR IT...");
+
+	printf("\n\n====================================================\n   ");
+    printf("Informacoes de como interagir com o programa:\n\n");
+    printf("\nPrecione Esc para sair ");
+    printf("\nPrecione F ou f para tela cheia");
+    printf("\nPrecione o botao direito do mouse para acessar o menu");
+    printf("\nPrecione D ou d para ver os estados e suas respectivas cores");
+    printf("\n\n   ");
+    
 }
 
 void Teclado(unsigned char key, int x, int y){
@@ -172,7 +185,23 @@ void Teclado(unsigned char key, int x, int y){
 	if(key == 27){
 		exit(0);
 	}
+	 if ((key ==70) || (key == 102)){
+		
+		 glutFullScreen();
+	}
+	
+	//tecla D ou d
+	 if((key == 68)||(key==100)){
+	 	 
+    v1= -5500;
+	v2=-2800;
+	}
+	glFlush();
+	 glutPostRedisplay();
 }
+
+
+
 // Fun??o callback chamada quando o tamanho da janela ? alterado 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 {
@@ -192,24 +221,6 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
                    else 
                            gluOrtho2D (0.0f, 350.0f*w/h, 0.0f, 350.0f);
 }
-
-/*void MoverCirculo(int passo)
-{
-if(direcao==1)
-{
-moveCirculo += 1;
-if(moveCirculo==500) direcao = 0;
-}
-
-else
-{
-moveCirculo -= 1;
-if(moveCirculo==-225) direcao = 1;
-}
-glutPostRedisplay();
-glutTimerFunc(10,MoverCirculo, 1);
-
-}*/
 
 
 void criaMenu(int opcao){
@@ -386,11 +397,8 @@ int main(int argc, char ** argv) {
  glutInitWindowPosition(10,10);
  glutCreateWindow("C?rculo");
  glutDisplayFunc(Desenha  );
- glutFullScreen();
- int menu;
- 
+ int menu; 
  menu = glutCreateMenu(criaMenu);
- 
  glutAddMenuEntry("JANEIRO", 0);
  glutAddMenuEntry("FEVEREIRO", 1);
  glutAddMenuEntry("MARÇO", 2);
@@ -403,13 +411,9 @@ int main(int argc, char ** argv) {
  glutAddMenuEntry("OUTUBRO", 9);
  glutAddMenuEntry("NOVEMBRO", 10);
  glutAddMenuEntry("DEZEMBRO", 11);
- 
- glutAttachMenu(GLUT_RIGHT_BUTTON);
- 
- 
+ glutAttachMenu(GLUT_RIGHT_BUTTON); 
  glutReshapeFunc(AlteraTamanhoJanela);
  glutKeyboardFunc(Teclado);
- //glutTimerFunc(10,MoverCirculo,1);
  Inicializa();
  glutMainLoop();
 
