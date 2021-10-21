@@ -46,6 +46,24 @@ void DesenhaCirculo(GLfloat t1, GLfloat t2){
 	
 }
 
+
+void DesenhaTexto(void *font, char *string) 
+{
+	// Exibe caractere a caractere
+	while(*string)
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15,*string++); 
+}
+
+// Função que recebe a fonte e um texto por parâmetro para ser exibido na 
+// tela usando fonte de linhas
+void DesenhaTextoStroke(void *font, char *string) 
+{  
+	// Exibe caractere a caractere
+	while(*string)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++); 
+}
+
+
 // Fun??o callback chamada para fazer o desenho
 void Desenha(void)
 {
@@ -57,79 +75,79 @@ void Desenha(void)
      // Limpa a janela de visualiza??o com a cor de fundo especificada
      glClear(GL_COLOR_BUFFER_BIT);
 
-   
-   
+
      
      
      // Especifica o tamanho do pixel
      glPointSize(1.0);
      raio = r0;
 	
-	//Desenha círculo 1 na cor branca
+	//Desenha círculo 1 na cor branca Alagoas
      glColor3f(1.0f, 1.0f, 1.0f);
-     t1 = -100;
-     t2 = 100;
+     t1 = -10;
+     t2 = 0;
 	 DesenhaCirculo(t1,t2);
      
-     //Desenha circulo 2 na cor verde
+     //Desenha circulo 2 na cor verde Bahia
      raio=r1;
      glColor3f(0.0f,1.0f,0.0f);     
-     t1 =50;
-     t2 =20;
+     t1 =90;
+     t2 =40;
      DesenhaCirculo(t1,t2);
 	
-	//Desenha circulo 3 na cor amarela
+	//Desenha circulo 3 na cor amarela Ceará
 	raio = r2;
 	glColor3f(1.0f,1.0f,0.0f);     
-     t1 +=10;
-     t2+=10;
+     t1 =100;
+     t2 =40;
      DesenhaCirculo(t1,t2);
     
 	 
-	//Desenha circulo 4 na cor vermelha
+	//Desenha circulo 4 na cor azul Maranhão
 	raio = r3;
 	glColor3f(0.0f,0.0f,1.0f);     
-     t1 +=-100;
-     t2+=-50;
+     t1 =30;
+     t2=-70;
      DesenhaCirculo(t1,t2);
      
-     //Desenha circulo 5
+     //Desenha circulo 5 Paraíba
 	 raio = r4; 
-	glColor3f(0.0f,1.0f,1.0f);     
-     t1 +=-0;
-     t2+=-50;
+	glColor3f(0.0f,1.0f,0.0f);     
+     t1 =45;
+     t2 =15;
      DesenhaCirculo(t1,t2);
     
-      //Desenha circulo 6 
+      //Desenha circulo 6 magenta
       raio = r5;
      glColor3f(0.0f,0.5f,0.5f);     
-     t1 +=0;
-     t2+=-50;
+     t1 = 55;
+     t2 = 60;
      DesenhaCirculo(t1,t2);
      
       //Desenha circulo 7 
       raio = r6;
      glColor3f(0.5f,0.1f,1.0f);     
-     t1 +=80;
-     t2+=80;
+     t1 =75;
+     t2 =-45;
      DesenhaCirculo(t1,t2);
      
        //Desenha circulo 8 
        raio = r7;
      glColor3f(0.5f,0.5f,0.5f);     
-     t1 +=80;
-     t2+=80;
+     t1 =65;
+     t2 =-10;
      DesenhaCirculo(t1,t2);
      
        //Desenha circulo 9 
        raio = r8;
     glColor3f(0.5f,0.5f,0.0f);     
-     t1 +=-250;
-     t2+=-60;
+     t1 =-50;
+     t2 =-45;
      DesenhaCirculo(t1,t2);
      
-     
-    
+     	glTranslatef(-320,320,0);
+	glScalef(0.1, 0.1, 0.1);
+    DesenhaTextoStroke(GLUT_STROKE_ROMAN,"GRAFICO DE BOLHA DE CADA ESTADO DO NORDESTE - COVID 19");    
      
     // Executa os comandos OpenGL
     glFlush();
@@ -144,7 +162,7 @@ void Inicializa (void)
     
     //Exibe informações de como interagir
     printf("Informações de como interagir com o programa:\n\n");
-    printf("LOREM IPSUM DOLOR IT...");
+    printf("Precione Esc para sair ");
     printf("\nLOREM IPSUM DOLOR IT...");
     printf("\nLOREM IPSUM DOLOR IT...");
 }
@@ -170,9 +188,9 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 
                    // Estabelece a janela de sele??o (left, right, bottom, top)
                    if (w <= h) 
-                           gluOrtho2D (0.0f, 300.0f, 0.0f, 300.0f*h/w);
+                           gluOrtho2D (0.0f, 350.0f, 0.0f, 350.0f*h/w);
                    else 
-                           gluOrtho2D (0.0f, 300.0f*w/h, 0.0f, 300.0f);
+                           gluOrtho2D (0.0f, 350.0f*w/h, 0.0f, 350.0f);
 }
 
 /*void MoverCirculo(int passo)
@@ -206,17 +224,160 @@ void criaMenu(int opcao){
 			r6 = Pi[0];
 			r7 = RN[0];
 			r8 = SE[0];
-			
-			//Desenha();
+						
 			break;
+		case 1:
+			r0 = AL[1]; 
+			r1 = BA[1];
+			r2 = CE[1];
+			r3 = MA[1];
+			r4 = PB[1];
+			r5 = PE[1];
+			r6 = Pi[1];
+			r7 = RN[1];
+			r8 = SE[1];
+						
+			break;
+			
+		case 2:
+			r0 = AL[2]; 
+			r1 = BA[2];
+			r2 = CE[2];
+			r3 = MA[2];
+			r4 = PB[2];
+			r5 = PE[2];
+			r6 = Pi[2];
+			r7 = RN[2];
+			r8 = SE[2];
+						
+			break;
+			
+		case 3:
+			r0 = AL[3]; 
+			r1 = BA[3];
+			r2 = CE[3];
+			r3 = MA[3];
+			r4 = PB[3];
+			r5 = PE[3];
+			r6 = Pi[3];
+			r7 = RN[3];
+			r8 = SE[3];
+						
+			break;
+			
+		case 4:
+			r0 = AL[4]; 
+			r1 = BA[4];
+			r2 = CE[4];
+			r3 = MA[4];
+			r4 = PB[4];
+			r5 = PE[4];
+			r6 = Pi[4];
+			r7 = RN[4];
+			r8 = SE[4];
+						
+			break;
+			
+		case 5:
+			r0 = AL[5]; 
+			r1 = BA[5];
+			r2 = CE[5];
+			r3 = MA[5];
+			r4 = PB[5];
+			r5 = PE[5];
+			r6 = Pi[5];
+			r7 = RN[5];
+			r8 = SE[5];
+						
+			break;
+			
+		case 6:
+			r0 = AL[6]; 
+			r1 = BA[6];
+			r2 = CE[6];
+			r3 = MA[6];
+			r4 = PB[6];
+			r5 = PE[6];
+			r6 = Pi[6];
+			r7 = RN[6];
+			r8 = SE[6];
+						
+			break;
+			
+		case 7:
+			r0 = AL[7]; 
+			r1 = BA[7];
+			r2 = CE[7];
+			r3 = MA[7];
+			r4 = PB[7];
+			r5 = PE[7];
+			r6 = Pi[7];
+			r7 = RN[7];
+			r8 = SE[7];
+						
+			break;
+			
+		case 8:
+			r0 = AL[8]; 
+			r1 = BA[8];
+			r2 = CE[8];
+			r3 = MA[8];
+			r4 = PB[8];
+			r5 = PE[8];
+			r6 = Pi[8];
+			r7 = RN[8];
+			r8 = SE[8];
+						
+			break;
+			
+		case 9:
+			r0 = AL[9]; 
+			r1 = BA[9];
+			r2 = CE[9];
+			r3 = MA[9];
+			r4 = PB[9];
+			r5 = PE[9];
+			r6 = Pi[9];
+			r7 = RN[9];
+			r8 = SE[9];
+						
+			break;
+			
+		case 10:
+			r0 = AL[10]; 
+			r1 = BA[10];
+			r2 = CE[10];
+			r3 = MA[10];
+			r4 = PB[10];
+			r5 = PE[10];
+			r6 = Pi[10];
+			r7 = RN[10];
+			r8 = SE[10];
+						
+			break;
+			
+		case 11:
+			r0 = AL[11]; 
+			r1 = BA[11];
+			r2 = CE[11];
+			r3 = MA[11];
+			r4 = PB[11];
+			r5 = PE[11];
+			r6 = Pi[11];
+			r7 = RN[11];
+			r8 = SE[11];
+						
+			break;
+	
 	}
+	
 	glutPostRedisplay();
 }
 
 int main(int argc, char ** argv) {
  int sizex, sizey;
 
- sizex = 500;
+ sizex = 900;
  sizey = 500;
 
  glutInit(&argc, argv);
@@ -225,15 +386,24 @@ int main(int argc, char ** argv) {
  glutInitWindowPosition(10,10);
  glutCreateWindow("C?rculo");
  glutDisplayFunc(Desenha  );
- 
+ glutFullScreen();
  int menu;
  
  menu = glutCreateMenu(criaMenu);
  
  glutAddMenuEntry("JANEIRO", 0);
- /*glutAddMenuEntry("FEVEREIRO", 1);
+ glutAddMenuEntry("FEVEREIRO", 1);
  glutAddMenuEntry("MARÇO", 2);
- glutAddMenuEntry("ABRIL", 3);*/
+ glutAddMenuEntry("ABRIL", 3);
+ glutAddMenuEntry("MAIO", 4);
+ glutAddMenuEntry("JUNHO", 5);
+ glutAddMenuEntry("JULHO", 6);
+ glutAddMenuEntry("AGOSTO", 7);
+ glutAddMenuEntry("SETEMBRO", 8);
+ glutAddMenuEntry("OUTUBRO", 9);
+ glutAddMenuEntry("NOVEMBRO", 10);
+ glutAddMenuEntry("DEZEMBRO", 11);
+ 
  glutAttachMenu(GLUT_RIGHT_BUTTON);
  
  
