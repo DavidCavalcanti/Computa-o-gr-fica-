@@ -62,7 +62,7 @@ void DesenhaTextoStroke(void *font, char *string)
 {  
 	// Exibe caractere a caractere
 	while(*string)
-		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++); 
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,*string++); // escrever um caractere na imagem
 }
 
 
@@ -177,6 +177,7 @@ void Inicializa (void)
     printf("\nPrecione o botao direito do mouse para acessar o menu");
     printf("\nPrecione D ou d para ver os estados e suas respectivas cores");
     printf("\nPrecione F1 para alterar cor de tela");
+    printf("\nPrecione F2 para retornar a cor de tela primária");
     printf("\n\n   ");
     
 }
@@ -206,6 +207,13 @@ void TeclasEspeciais(int key, int x, int y)
 	if(key == GLUT_KEY_F1 ){
 		
 	 glClearColor(0.2f, 0.7f, 0.4f, 1.0f);
+	Desenha();
+	
+	}
+	
+	if(key == GLUT_KEY_F2 ){
+		
+	 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	Desenha();
 	
 	}
